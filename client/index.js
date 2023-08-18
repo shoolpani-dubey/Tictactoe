@@ -1,6 +1,6 @@
 import { ChoosePlayer } from './components/ChoosePlayer.js';
 import { ChooseSymbol } from './components/ChooseSymbol.js';
-import { Status } from './components/StatusComponent.js';
+import { Status } from './components/Status.js';
 import {TicTacToe} from './components/TicTacToe.js';
 import { GameStatus, Player } from './utils/constants.js';
 import {storeInstance} from './store.js';
@@ -8,6 +8,17 @@ import {storeInstance} from './store.js';
 const coreLogic = async (store, setStore) => {
     console.log("Store Rep:",store);
     const rootEle = document.getElementById('root');
+    const onRestart = () => {
+        setStore({
+            game:{
+                id:null,
+                board:'---------',
+                status:null
+            },
+            gameSymbol:null,
+            whoPlaysFirst:null
+        })
+    }
     const onChooseSymbol = (symbol) => {
         setStore({
             gameSymbol:symbol
@@ -104,7 +115,7 @@ const coreLogic = async (store, setStore) => {
         || gameStatus === GameStatus.O_WON
         || gameStatus === GameStatus.X_WON){
             clearScreen(rootEle);
-            const statusComp = Status(store.gameSymbol,gameStatus);
+            const statusComp = Status(store.gameSymbol,gameStatus, onRestart);
             rootEle.appendChild(statusComp);
             return;
         }

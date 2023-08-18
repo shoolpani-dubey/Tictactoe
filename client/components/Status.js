@@ -1,6 +1,10 @@
 import { GameStatus, GameSymbol } from "../utils/constants.js";
 
-function Status(gameSymbol,gameStatus){
+function Status(gameSymbol,gameStatus, onRestart){
+    const div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.flexDirection = 'column';
+
     const label = document.createElement('label');
     label.id="status";
     label.className = "status";
@@ -23,6 +27,14 @@ function Status(gameSymbol,gameStatus){
             label.textContent = "This match was a draw.";
             break;
     }
-    return label;
+
+    const button = document.createElement('button');
+    button.textContent = "Restart Game";
+    button.onclick = onRestart;
+    button.style.margin = '1rem 0';
+
+    div.appendChild(label);
+    div.appendChild(button);
+    return div;
 }
 export {Status};
