@@ -1,7 +1,7 @@
 import { TicRowEleLabel } from "./TicRowEleLabel.js";
 
-function TicRowEle(eleId, onClickTicRowEle){
-    const innerLabel = TicRowEleLabel(eleId);
+function TicRowEle(eleId,value, onClickTicRowEle){
+    const innerLabel = TicRowEleLabel(eleId,value);
     const btn = document.createElement('button');
     btn.id = "button_"+eleId;
     btn.className = 'ticele';
